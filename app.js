@@ -111,6 +111,9 @@ function hslControls(event) {
     .set("hsl.s", saturation.value);
 
   colorDivs[index].style.backgroundColor = color;
+
+  // colorize inputs/sliders
+  colorizeSliders(color, hue, brightness, saturation);
 }
 
 function updateTextUi(index) {
