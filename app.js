@@ -2,8 +2,8 @@
 const colorDivs = document.querySelectorAll(".color");
 const generateBtn = document.querySelectorAll(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
-console.log(sliders);
 const currentHexes = document.querySelectorAll(".color h2");
+const popup = document.querySelector(".copy-container");
 let initialColors;
 
 //EventListeners
@@ -15,6 +15,16 @@ colorDivs.forEach((div, index) => {
   div.addEventListener("change", () => {
     updateTextUi(index);
   });
+});
+currentHexes.forEach((hex) => {
+  hex.addEventListener("click", () => {
+    copyToClipboard(hex);
+  });
+});
+popup.addEventListener("transitionend", () => {
+  const popupBox = popup.children[0];
+  popup.classList.remove("active");
+  popupBox.classList.remove("active");
 });
 
 // Functions
@@ -140,7 +150,6 @@ function resetInputs() {
       const brightColor = initialColors[slider.getAttribute("data-bright")];
       const brightValue = chroma(brightColor).hsl()[2];
       slider.value = Math.floor(brightValue * 100) / 100;
-      console.log(slider.value);
     }
     if (slider.name === "saturation") {
       const satColor = initialColors[slider.getAttribute("data-sat")];
@@ -149,4 +158,16 @@ function resetInputs() {
     }
   });
 }
+function copyToClipboard(hex) {
+  const element = document.createElement("textarea");
+  element.value = hex.innerText;
+  document.body.appendChild(element);
+  element.select();
+  document.execCommand("copy");
+  document.body.removeChild(element);
+  const popupBox = popup.children[0];
+  popup.classList.add("active");
+  popupBox.classList.add("active");
+}
+
 randomColors();
