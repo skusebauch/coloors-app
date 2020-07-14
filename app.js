@@ -9,6 +9,11 @@ const currentHexes = document.querySelectorAll(".color h2");
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
 });
+colorDivs.forEach((div, index) => {
+  div.addEventListener("change", () => {
+    updateTextUi(index);
+  });
+});
 
 // Functions
 // generate color
@@ -77,6 +82,7 @@ function colorizeSliders(color, hue, brightness, saturation) {
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75), rgb(204,204,75), rgb(75,204,75), rgb(75,204,204), rgb(75,75,204), rgb(204,75,204), rgb(204,75,75))`;
 }
 
+// change bg based on our sliders
 function hslControls(event) {
   const index =
     event.target.getAttribute("data-hue") ||
@@ -98,6 +104,20 @@ function hslControls(event) {
     .set("hsl.s", saturation.value);
 
   colorDivs[index].style.backgroundColor = color;
+}
+
+function updateTextUi(index) {
+  const activeDiv = colorDivs[index];
+  const color = chroma(activeDiv.style.backgroundColor);
+  const textHex = activeDiv.querySelector("h2");
+  const icons = activeDiv.querySelectorAll(".controls button");
+  // convert it to hex instead of rgb
+  textHex.innerText = color.hex();
+  // check contrast
+  checkTextContrast(color, textHex);
+  for (icon of icons) {
+    checkTextContrast(color, icon);
+  }
 }
 
 randomColors();
