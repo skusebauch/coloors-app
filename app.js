@@ -2,6 +2,7 @@
 const colorDivs = document.querySelectorAll(".color");
 const generateBtn = document.querySelectorAll(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
+console.log(sliders);
 const currentHexes = document.querySelectorAll(".color h2");
 let initialColors;
 
@@ -53,6 +54,8 @@ function randomColors() {
 
     colorizeSliders(color, hue, brightness, saturation);
   });
+  // Reset inputs
+  resetInputs();
 }
 
 // check the contras and decide whether font color white/ black
@@ -123,5 +126,24 @@ function updateTextUi(index) {
     checkTextContrast(color, icon);
   }
 }
-
+function resetInputs() {
+  sliders.forEach((slider) => {
+    if (slider.name === "hue") {
+      const hueColor = initialColors[slider.getAttribute("data-hue")];
+      const hueValue = chroma(hueColor).hsl()[0];
+      slider.value = Math.floor(hueValue);
+    }
+    if (slider.name === "brightness") {
+      const brightColor = initialColors[slider.getAttribute("data-bright")];
+      const brightValue = chroma(brightColor).hsl()[2];
+      slider.value = Math.floor(brightValue * 100) / 100;
+      console.log(slider.value);
+    }
+    if (slider.name === "saturation") {
+      const satColor = initialColors[slider.getAttribute("data-sat")];
+      const satValue = chroma(satColor).hsl()[1];
+      slider.value = Math.floor(satValue * 100) / 100;
+    }
+  });
+}
 randomColors();
