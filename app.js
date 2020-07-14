@@ -4,8 +4,13 @@ const generateBtn = document.querySelectorAll(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 
-// Functions
+//EventListeners
 
+sliders.forEach((slider) => {
+  slider.addEventListener("input", hslControls);
+});
+
+// Functions
 // generate color
 function generateHex() {
   // using chroma-js
@@ -70,6 +75,29 @@ function colorizeSliders(color, hue, brightness, saturation) {
     0
   )}, ${midBright}, ${scaleBright(1)})`;
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75), rgb(204,204,75), rgb(75,204,75), rgb(75,204,204), rgb(75,75,204), rgb(204,75,204), rgb(204,75,75))`;
+}
+
+function hslControls(event) {
+  const index =
+    event.target.getAttribute("data-hue") ||
+    event.target.getAttribute("data-bright") ||
+    event.target.getAttribute("data-sat");
+
+  let slidersCurrentDiv = event.target.parentElement.querySelectorAll(
+    'input[type="range"]'
+  );
+  const hue = slidersCurrentDiv[0];
+  const brightness = slidersCurrentDiv[1];
+  const saturation = slidersCurrentDiv[2];
+
+  const bgColor = colorDivs[index].querySelector("h2").innerText;
+
+  let color = chroma(bgColor)
+    .set("hsl.h", hue.value)
+    .set("hsl.l", brightness.value)
+    .set("hsl.s", saturation.value);
+
+  colorDivs[index].style.backgroundColor = color;
 }
 
 randomColors();
