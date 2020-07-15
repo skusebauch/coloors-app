@@ -1,15 +1,19 @@
 // Global selections and variables
 const colorDivs = document.querySelectorAll(".color");
-const generateBtn = document.querySelectorAll(".generate");
+const generateBtn = document.querySelector(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 const popup = document.querySelector(".copy-container");
+const lockBtn = document.querySelectorAll(".lock");
 const adjustBtn = document.querySelectorAll(".adjust");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 const sliderContainers = document.querySelectorAll(".sliders");
+
 let initialColors;
 
 //EventListeners
+
+generateBtn.addEventListener("click", randomColors);
 
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
@@ -59,7 +63,7 @@ function generateHex() {
 
 // generate dynamic h2 and background color to picked color
 function randomColors() {
-  //
+  // reset evertime we run this function
   initialColors = [];
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
@@ -81,6 +85,12 @@ function randomColors() {
   });
   // Reset inputs
   resetInputs();
+
+  // Check for button contrast
+  adjustBtn.forEach((button, index) => {
+    checkTextContrast(initialColors[index], button);
+    checkTextContrast(initialColors[index], lockBtn[index]);
+  });
 }
 
 // check the contras and decide whether font color white/ black
