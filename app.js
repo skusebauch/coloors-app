@@ -271,7 +271,7 @@ function savePalette(event) {
     colors.push(hex.innerText);
   });
   // generate Object
-  let paletteNr = savePalette.length;
+  let paletteNr = savedPalettes.length;
   // actually the same like: { name: name, colors: colors ect..}
   const paletteObj = { name, colors, nr: paletteNr };
   savedPalettes.push(paletteObj);
@@ -296,6 +296,20 @@ function savePalette(event) {
   paletteBtn.classList.add(paletteObj.nr);
   paletteBtn.innerText = "Select";
 
+  // attach event to select button
+  paletteBtn.addEventListener("click", (e) => {
+    closeLibrary();
+    const paletteIndex = e.target.classList[1];
+    initialColors = [];
+    savedPalettes[paletteIndex].colors.forEach((color, index) => {
+      initialColors.push(color);
+      colorDivs[index].style.backgroundColor = color;
+      const text = colorDivs[index].children[0];
+      checkTextContrast(color, text);
+      updateTextUi(index);
+    });
+    resetInputs();
+  });
   //append to library
   palette.appendChild(title);
   palette.appendChild(preview);
