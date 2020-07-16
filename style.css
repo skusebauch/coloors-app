@@ -31,6 +31,12 @@ svg {
   .color h2 {
     margin-top: 1.5rem;
   }
+  .controls {
+    flex-direction: row !important;
+    height: 12rem;
+    width: 90%;
+    justify-content: space-around;
+  }
 }
 
 .color {
