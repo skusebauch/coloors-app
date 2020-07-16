@@ -27,9 +27,7 @@ svg {
 @media only screen and (max-width: 50em) {
   .colors {
     flex-direction: column;
-  }
-  .color {
-    height: 16rem !important;
+    min-height: 16rem !important;
   }
   .color h2 {
     margin-top: 1.5rem;
