@@ -30,6 +30,7 @@ svg {
   }
   .color h2 {
     margin-top: 1.5rem;
+    height: 16rem;
   }
   .controls {
     flex-direction: row !important;
