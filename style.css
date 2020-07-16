@@ -29,6 +29,9 @@ svg {
     flex-direction: column;
     min-height: 16rem !important;
   }
+  .color {
+    height: 20rem !important;
+  }
   .color h2 {
     margin-top: 1.5rem;
   }
