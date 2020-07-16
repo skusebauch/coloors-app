@@ -270,8 +270,17 @@ function savePalette(event) {
   currentHexes.forEach((hex) => {
     colors.push(hex.innerText);
   });
+
+  // check whether we have anything saved - dont want to start from zero again
+
   // generate Object
-  let paletteNr = savedPalettes.length;
+  let paletteNr;
+  const paletteObjects = JSON.parse(localStorage.getItem("palettes"));
+  if (paletteObjects) {
+    paletteNr = paletteObjects.length;
+  } else {
+    paletteNr = savedPalettes.length;
+  }
   // actually the same like: { name: name, colors: colors ect..}
   const paletteObj = { name, colors, nr: paletteNr };
   savedPalettes.push(paletteObj);
@@ -338,9 +347,10 @@ function closeLibrary() {
 }
 function getLocal() {
   if (localStorage.getItem("palettes") === null) {
-    localStorage = [];
+    localPalettes = [];
   } else {
     const paletteObjects = JSON.parse(localStorage.getItem("palettes"));
+    savedPalettes = [...paletteObjects];
     paletteObjects.forEach((paletteObj) => {
       // generate palette for the library (UI)
       const palette = document.createElement("div");
