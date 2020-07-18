@@ -37,7 +37,8 @@ svg {
   }
   .library-popup {
     max-height: 80% !important;
-    overflow: scroll;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 }
 @media only screen and (max-width: 50em) {
