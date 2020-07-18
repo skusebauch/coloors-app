@@ -69,6 +69,10 @@ svg {
   overflow: hidden;
 }
 
+.color span {
+  color: black;
+}
+
 .color h2 {
   font-size: 2rem;
   cursor: pointer;
