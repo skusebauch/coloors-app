@@ -238,6 +238,7 @@ input[type="range"] {
   padding: 1rem;
   justify-content: flex-start;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   max-height: 50vh;
 }
 
