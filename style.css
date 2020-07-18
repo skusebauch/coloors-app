@@ -23,7 +23,22 @@ svg {
   display: flex;
   color: rgb(230, 230, 230);
 }
-
+@media only screen and (max-width: 75em) {
+  .custom-palette {
+    flex-direction: column;
+    padding: 0rem 2rem 2rem 2rem !important;
+  }
+  .custom-palette h4 {
+    padding-top: 0rem !important;
+  }
+  .single-preview {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .library-popup.active {
+    max-height: 80% !important;
+  }
+}
 @media only screen and (max-width: 50em) {
   .colors {
     flex-direction: column;
@@ -40,20 +55,6 @@ svg {
     height: 12rem;
     width: 90%;
     justify-content: space-around;
-  }
-  .custom-palette {
-    flex-direction: column;
-    padding: 0rem 2rem 2rem 2rem !important;
-  }
-  .custom-palette h4 {
-    padding-top: 0rem !important;
-  }
-  .single-preview {
-    width: 100%;
-    margin-bottom: 2rem;
-  }
-  .library-popup.active {
-    max-height: 80% !important;
   }
 }
 
