@@ -69,10 +69,6 @@ svg {
   overflow: hidden;
 }
 
-.sliders.active span {
-  color: black;
-}
-
 .color h2 {
   font-size: 2rem;
   cursor: pointer;
@@ -98,6 +94,7 @@ svg {
   opacity: 1;
   transform: translateY(0px);
   pointer-events: all;
+  color: black;
 }
 
 .sliders button,
