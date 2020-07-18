@@ -69,7 +69,7 @@ svg {
   overflow: hidden;
 }
 
-.color span {
+.sliders.active span {
   color: black;
 }
 
