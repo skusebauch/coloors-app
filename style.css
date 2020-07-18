@@ -41,6 +41,20 @@ svg {
     width: 90%;
     justify-content: space-around;
   }
+  .custom-palette {
+    flex-direction: column;
+    padding: 0rem 2rem 2rem 2rem !important;
+  }
+  .custom-palette h4 {
+    padding-top: 0rem !important;
+  }
+  .single-preview {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .library-popup.active {
+    max-height: 80% !important;
+  }
 }
 
 .color {
